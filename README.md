@@ -1,2 +1,3 @@
-# multi_screen
+# Restaurant
+A simple multi screen restaurant app
 
