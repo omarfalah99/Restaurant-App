@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:multi_screen/Screen/categories_screen.dart';
 import 'package:multi_screen/Screen/category_meals.dart';
 import 'package:multi_screen/Screen/filter_screen.dart';
 import 'package:multi_screen/Screen/meal_detail.dart';
@@ -30,10 +29,11 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => TabsScreen(),
-        CategoryMealsScreen.routeName: (context) => CategoryMealsScreen(),
-        MealDetailScreen.MealDetailScreenName: (context) => MealDetailScreen(),
-        FilterScreen.routeName : (context) => FilterScreen(),
+        '/': (context) => const TabsScreen(),
+        CategoryMealsScreen.routeName: (context) => const CategoryMealsScreen(),
+        MealDetailScreen.MealDetailScreenName: (context) =>
+            const MealDetailScreen(),
+        FilterScreen.routeName: (context) => const FilterScreen(),
       },
     );
   }
