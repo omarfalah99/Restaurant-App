@@ -3,19 +3,26 @@ import 'package:multi_screen/Screen/categories_screen.dart';
 import 'package:multi_screen/Screen/favourite_screen.dart';
 import 'package:multi_screen/Widget/drawer.dart';
 
+import '../Data/meal.dart';
+
 class TabsScreen extends StatefulWidget {
-  const TabsScreen({Key? key}) : super(key: key);
+  List<Meal> list;
+  TabsScreen(this.list);
 
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
 
 class _TabsScreenState extends State<TabsScreen> {
-  List widgets = [const CategoriesScreen(), const FavScreen()];
+  late List listOfFav;
 
   int selectedIndex = 0;
 
-
+  @override
+  void initState() {
+    listOfFav = [const CategoriesScreen(), FavScreen(widget.list)];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +32,7 @@ class _TabsScreenState extends State<TabsScreen> {
         title:
             selectedIndex == 0 ? const Text('Meals') : const Text('Favourite'),
       ),
-      body: widgets[selectedIndex],
+      body: listOfFav[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
         selectedItemColor: Colors.amberAccent,

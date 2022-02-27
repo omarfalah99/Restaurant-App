@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:multi_screen/Data/dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen({Key? key}) : super(key: key);
   static const MealDetailScreenName = '/mealDetailScreen';
+
+  final Function function;
+  final Function fav;
+  MealDetailScreen(this.function, this.fav);
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +56,9 @@ class MealDetailScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pop(id);
+          function(id);
         },
-        child: const Icon(Icons.delete),
+        child: Icon(fav(id) ? Icons.star : Icons.star_border),
       ),
     );
   }

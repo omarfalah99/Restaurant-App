@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Meal> availableMeals = DUMMY_MEALS;
+  List<Meal> favoriteMeals = [];
 
   void setFilter(Map<String, bool> filterData) {
     setState(() {
@@ -50,6 +51,26 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void favorite(String id) {
+    final indexof = favoriteMeals.indexWhere((element) {
+      return element.id == id;
+    });
+    if (indexof >= 0) {
+      setState(() {
+        favoriteMeals.removeAt(indexof);
+      });
+    } else {
+      setState(() {
+        favoriteMeals
+            .add(DUMMY_MEALS.firstWhere((element) => element.id == id));
+      });
+    }
+  }
+
+  bool isMealFav(String id) {
+    return favoriteMeals.any((element) => element.id == id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,11 +83,11 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const TabsScreen(),
+        '/': (context) => TabsScreen(favoriteMeals),
         CategoryMealsScreen.routeName: (context) =>
             CategoryMealsScreen(availableMeals),
         MealDetailScreen.MealDetailScreenName: (context) =>
-            const MealDetailScreen(),
+            MealDetailScreen(favorite, isMealFav),
         FilterScreen.routeName: (context) => FilterScreen(setFilter),
       },
     );

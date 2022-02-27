@@ -9,16 +9,15 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Function removeItem;
 
-  const MealItem(
-      {required this.title,
-      required this.imageUrl,
-      required this.duration,
-      required this.complexity,
-      required this.affordability,
-      required this.id,
-      required this.removeItem});
+  const MealItem({
+    required this.title,
+    required this.imageUrl,
+    required this.duration,
+    required this.complexity,
+    required this.affordability,
+    required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +29,9 @@ class MealItem extends StatelessWidget {
           Navigator.pushNamed(context, MealDetailScreen.MealDetailScreenName,
                   arguments: id)
               .then((value) {
-                if (value != null) {
-                  removeItem(value);
-                }
+            if (value != null) {
+              // removeItem(value);
+            }
           });
         },
         child: Card(
