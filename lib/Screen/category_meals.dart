@@ -4,8 +4,9 @@ import 'package:multi_screen/Data/meal.dart';
 import 'package:multi_screen/Widget/meal_item.dart';
 
 class CategoryMealsScreen extends StatefulWidget {
-  const CategoryMealsScreen({Key? key}) : super(key: key);
   static const routeName = '/category-meals';
+  List<Meal> list;
+  CategoryMealsScreen(this.list, {Key? key}) : super(key: key);
 
   @override
   State<CategoryMealsScreen> createState() => _CategoryMealsScreenState();
@@ -29,7 +30,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
       String id = routeArgs['id'];
       title = routeArgs['title'];
 
-      displayMeal = DUMMY_MEALS.where((element) {
+      displayMeal = widget.list.where((element) {
         return element.categories.contains(id);
       }).toList();
       loadedinitdata = true;
